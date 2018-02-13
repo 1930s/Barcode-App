@@ -9,34 +9,10 @@
 import UIKit
 import AVFoundation
 
-var captureSession:AVCaptureSession?
-var videoPreviewLayer:AVCaptureVideoPreviewLayer?
-var qrCodeFrameView:UIView?
-
-class QRCodeViewController: UIViewController {
+class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Get the back-facing camera for capturing videos
-        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera], mediaType: AVMediaType.video, position: .back)
-        
-        guard let captureDevice = deviceDiscoverySession.devices.first else {
-            print("Failed to get the camera device")
-            return
-        }
-        
-        do {
-            // Get an instance of the AVCaptureDeviceInput class using the previous device object.
-            let input = try AVCaptureDeviceInput(device: captureDevice)
-            
-            // Set the input device on the capture session.
-            captureSession.addInput(input)
-        } catch {
-            // If any errors occurs, simply print it out and don't continue anymore.
-            print(error)
-            return
-        }
         
     }
 

@@ -99,6 +99,7 @@
 				TargetAttributes = {
 					F4F09DB21DAF669400026BB2 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = APZA8LD6UC;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
@@ -279,9 +280,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = APZA8LD6UC;
 				INFOPLIST_FILE = QRCodeReader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appcoda.QRCodeReader;
+				PRODUCT_BUNDLE_IDENTIFIER = QRCodeReader12345;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
@@ -292,9 +295,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = APZA8LD6UC;
 				INFOPLIST_FILE = QRCodeReader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appcoda.QRCodeReader;
+				PRODUCT_BUNDLE_IDENTIFIER = QRCodeReader12345;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
