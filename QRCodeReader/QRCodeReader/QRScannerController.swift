@@ -18,6 +18,7 @@ class QRScannerController: UIViewController {
     var captureSession = AVCaptureSession()
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
+    var ean13CodeFrameView:UIView?
     
     override func viewDidLoad() {
 
@@ -52,7 +53,7 @@ class QRScannerController: UIViewController {
             
             // Set delegate and use the default dispatch queue to execute the call back
             captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
+            captureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr, AVMetadataObject.ObjectType.ean13]
             
             // Initialize the video preview layer and add it as a sublayer to the viewPreview view
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -71,6 +72,15 @@ class QRScannerController: UIViewController {
                 qrCodeFrameView.layer.borderWidth = 2
                 view.addSubview(qrCodeFrameView)
                 view.bringSubview(toFront: qrCodeFrameView)
+            }
+            
+            ean13CodeFrameView = UIView()
+            
+            if let ean13CodeFrameView = ean13CodeFrameView {
+                ean13CodeFrameView.layer.borderColor = UIColor.green.cgColor
+                ean13CodeFrameView.layer.borderWidth = 2
+                view.addSubview(ean13CodeFrameView)
+                view.bringSubview(toFront: ean13CodeFrameView)
             }
             
         } catch {
@@ -105,7 +115,8 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRect.zero
-            messageLabel.text = "No QR code is detected"
+            ean13CodeFrameView?.frame = CGRect.zero
+            messageLabel.text = "No code detected"
             return
         }
         
@@ -116,6 +127,13 @@ extension QRScannerController: AVCaptureMetadataOutputObjectsDelegate {
             // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
+            
+            if metadataObj.stringValue != nil {
+                messageLabel.text = metadataObj.stringValue
+            }
+        } else if metadataObj.type == AVMetadataObject.ObjectType.ean13 {
+            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
+            ean13CodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
                 messageLabel.text = metadataObj.stringValue
