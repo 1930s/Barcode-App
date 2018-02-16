@@ -30,7 +30,3 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     }
 
 }
-
-class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-    
-}
